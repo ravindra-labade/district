@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+
+    <title>show</title>
+
+{% endblock %}
+{% block content %}
+            <table class="table table-dark table-hover">
+                    <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>District</th>
+                                <th>Tehsils</th>
+                                <th>Villages</th>
+                                <th>Collector</th>
+                                <th>Famous Spot</th>
+                                <th colspan="2" class="text-center">Action</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        {% for dist in districts %}
+                            <tr>
+                                <td>{{ dist.dist_id }}</td>
+                                <td>{{ dist.district_name }}</td>
+                                <td>{{ dist.number_of_tehsils }}</td>
+                                <td>{{ dist.number_of_villages }}</td>
+                                <td>{{ dist.collector }}</td>
+                                <td>{{ dist.famous_spot }}</td>
+                                <td>
+                                    <a href="{% url 'update_url' dist.id %}">
+                                        <button class="btn btn-primary"><i class="bi bi-pencil-square"></i>&nbsp Update</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'delete_url' dist.id  %}">
+                                        <button class="btn btn-warning"><i class="bi bi-trash"></i>&nbsp Delete</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+
+{% endblock %}
